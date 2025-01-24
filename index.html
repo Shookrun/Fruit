@@ -18,6 +18,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./assets/style/style.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
     <header class="container">
@@ -28,13 +29,35 @@
           <a href="#">Məhsullar</a>
           <a href="#">Haqqımızda</a>
           <a href="#">Əlaqə</a>
-          
         </div>
         <div class="userCart">
-
           <i class="fa-solid fa-cart-shopping"></i>
         </div>
       </nav>
     </header>
+    <main>
+      <section class="banner container">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="./assets/images/bannerImg1.jpg" alt="Banner 1">
+            </div>
+            <div class="swiper-slide">
+              <img src="./assets/images/bannerImg1.jpg" alt="Banner 2">
+            </div>
+            <div class="swiper-slide">
+              <img src="./assets/images/bannerImg1.jpg" alt="Banner 3">
+            </div>
+          </div>
+          
+          <div class="swiper-pagination"></div>
+          
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="./assets/js/swiper.js"></script>
   </body>
 </html>
