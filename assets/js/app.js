@@ -8,9 +8,9 @@ document.addEventListener("DOMContentLoaded", function () {
     { id: 3, title: "Portağal", price: 16.00, img: "https://pngimg.com/d/orange_PNG777.png", category: "Fruit" },
     { id: 4, title: "Portağal", price: 16.00, img: "https://pngimg.com/d/orange_PNG777.png", category: "Fruit" },
     { id: 5, title: "Portağal", price: 16.00, img: "https://pngimg.com/d/orange_PNG777.png", category: "Fruit" },
-    { id: 12, title: "Pomidor", price: 16.00, img: "https://e7.pngegg.com/pngimages/299/589/png-clipart-red-tomatoes-cherry-tomato-food-salad-tomato-natural-foods-fitness-thumbnail.png", category: "Vegetable" },
-    { id: 13, title: "Pomidor", price: 16.00, img: "https://e7.pngegg.com/pngimages/299/589/png-clipart-red-tomatoes-cherry-tomato-food-salad-tomato-natural-foods-fitness-thumbnail.png", category: "Vegetable" },
-    { id: 14, title: "Pomidor", price: 16.00, img: "https://e7.pngegg.com/pngimages/299/589/png-clipart-red-tomatoes-cherry-tomato-food-salad-tomato-natural-foods-fitness-thumbnail.png", category: "Vegetable" },
+    { id: 12, title: "Pomidor", price: 16.00, img: "../images/tomato.png", category: "Vegetable" },
+    { id: 13, title: "Pomidor", price: 16.00, img: "../images/tomato.png", category: "Vegetable" },
+    { id: 14, title: "Pomidor", price: 16.00, img: "../images/tomato.png", category: "Vegetable" },
   ];
 
   function displayProducts(filteredData) {
