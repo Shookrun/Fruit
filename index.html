@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>SAM Market</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
@@ -11,53 +11,147 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
+
     <link rel="stylesheet" href="./assets/style/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   </head>
   <body>
-    <header class="container">
-      <nav class="container">
-        <img src="./assets/images/logo.png" class="logo" alt="" />
-        <div class="navBtns">
-          <a href="index.html">Ana Səhifə</a>
-          <a href="#">Məhsullar</a>
-          <a href="#">Haqqımızda</a>
-          <a href="#">Əlaqə</a>
+    <div class="navbar">
+      <div class="logo">
+        <img src="./assets/images/logo.png" alt="SAM Market Logo" />
+        <span class="logo-text"
+          ><span>TEZ</span> <span class="market-text">BAZZAR</span></span
+        >
+      </div>
+
+   
+      <div class="search-bar">
+        <input type="text" placeholder="Məhsulu Axtarın" />
+        <button><i class="fas fa-search"></i> Axtar</button>
+      </div>
+
+      <div class="icons">
+        <i class="fas fa-user"></i>
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-heart"></i>
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <a href="#" class="active">Ana Səhifə</a>
+      <a href="./assets/pages/mehsullar.html">Məhsullar</a>
+      <a href="#">Haqqımızda</a>
+      <a href="#">Əlaqə</a>
+    </nav>
+
+
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXoXvo9LcdoOtIf2eedVwHvi2i01qVBIMrjQ&s"
+            alt="Slider Image"
+          />
         </div>
-        <div class="userCart">
-          <i class="fa-solid fa-cart-shopping"></i>
+        <div class="swiper-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXoXvo9LcdoOtIf2eedVwHvi2i01qVBIMrjQ&s"
+            alt="Slider Image"
+          />
         </div>
-      </nav>
-    </header>
-    <main>
-      <section class="banner container">
-        <div class="swiper">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./assets/images/bannerImg1.jpg" alt="Banner 1">
+        <div class="swiper-slide">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXoXvo9LcdoOtIf2eedVwHvi2i01qVBIMrjQ&s"
+            alt="Slider Image"
+          />
+        </div>
+      </div>
+
+    
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
+    </div>
+  
+    <section class="features">
+      <div class="container">
+        <div class="feature-item">
+          <i class="fas fa-cog"></i>
+          <h3>100% Zəmanət</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="feature-item">
+          <i class="fas fa-tag"></i>
+          <h3>100% Zəmanət</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="feature-item">
+          <i class="fas fa-shipping-fast"></i>
+          <h3>100% Zəmanət</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="feature-item">
+          <i class="fas fa-undo"></i>
+          <h3>100% Zəmanət</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ürünler Bölümü -->
+    <section class="products">
+      <div class="container">
+        <h2>Məhsulları Əldə Et !</h2>
+        <div class="product-list">
+          <div class="product-item">
+            <img src="https://pngimg.com/d/orange_PNG777.png" alt="" />
+            <h3>Portağal</h3>
+           
+            <div class="product-prices">
+              <span class="discounted-price">$16.00</span>
             </div>
-            <div class="swiper-slide">
-              <img src="./assets/images/bannerImg1.jpg" alt="Banner 2">
-            </div>
-            <div class="swiper-slide">
-              <img src="./assets/images/bannerImg1.jpg" alt="Banner 3">
-            </div>
+            <button class="add-to-cart">Səbətə Əlavə et</button>
           </div>
-          
-          <div class="swiper-pagination"></div>
-          
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
+          <div class="product-item">
+            <img
+              src="https://wallpapers.com/images/featured/peppermint-png-c05bqnx8clq3cfip.jpg"
+              alt=""
+            />
+            <h3>Nanə</h3>
+            
+            <div class="product-prices">
+              <span class="discounted-price">$16.00</span>
+            </div>
+            <button class="add-to-cart">Səbətə Əlavə et</button>
+          </div>
+          <div class="product-item">
+            <img
+              src="https://wallpapers.com/images/featured/peppermint-png-c05bqnx8clq3cfip.jpg"
+              alt=""
+            />
+            <h3>Nanə</h3>
+            <div class="product-prices">
+              <span class="discounted-price">$16.00</span>
+            </div>
+            <button class="add-to-cart">Səbətə Əlavə et</button>
+
+          </div>
         </div>
-      </section>
-    </main>
+      </div>
+    </section>
+
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="./assets/js/swiper.js"></script>
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Məhsullar</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="../style/mehsullar.css" />
+  </head>
+  <body>
+    <div class="navbars container">
+      <div class="navbar">
+        <div class="logo">
+          <img src="../images/logo.png" alt="SAM Market Logo" />
+          <span class="logo-text"
+            ><span>TEZ</span> <span class="market-text">BAZZAR</span></span
+          >
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Məhsulu Axtarın" />
+          <button><i class="fas fa-search"></i> Axtar</button>
+        </div>
+
+        <div class="icons">
+          <i class="fas fa-user"></i>
+          <i class="fas fa-bell"></i>
+          <i class="fas fa-heart"></i>
+          <i class="fas fa-shopping-cart"></i>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#" class="active">Ana Səhifə</a>
+        <a href="./assets/pages/mehsullar.html">Məhsullar</a>
+        <a href="#">Haqqımızda</a>
+        <a href="#">Əlaqə</a>
+      </nav>
+    </div>
+
+    <main class="container">
+      <h2>Kateqoriyalar</h2>
+      <div class="categoriesContainer">
+        <div class="categories">
+          <ul>
+            <li id="fruits" class="category" data-category="Fruit">
+              <i class="fa-solid fa-apple-whole"></i> Meyvələr
+            </li>
+            <li id="vegetables" class="category" data-category="Vegetable">
+              <i class="fa-solid fa-carrot"></i>Tərəvəzlər
+            </li>
+            <li id="meat" class="category" data-category="Meat">
+              <i class="fa-solid fa-drumstick-bite"></i>Ət Məhsulları
+            </li>
+          </ul>
+        </div>
+        <div class="products" id="products">
+          <!-- Products will be dynamically inserted here based on category -->
+        </div>
+      </div>
+    </main>
+    <script src="../js/app.js"></script>
+  </body>
+</html>
