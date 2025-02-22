@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   let products = document.getElementById("products");
   const cartIcon = document.querySelector(".fa-shopping-cart");
-  const notificationIcon = document.querySelector(".fa-bell");
+  const notificationIcon = document.querySelector(".fa-shopping-cart");
   let mockData = [
     { id: 1, title: "Portağal", price: 16.00, img: "https://pngimg.com/d/orange_PNG777.png", category: "Fruit" },
     { id: 2, title: "Portağal", price: 16.00, img: "https://pngimg.com/d/orange_PNG777.png", category: "Fruit" },
@@ -14,35 +14,65 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   function displayProducts(filteredData) {
-    products.innerHTML = ""; // Önbelleği temizle
+    products.innerHTML = "";
     filteredData.map(({ id, title, price, img }) => {
       products.innerHTML += `
         <div class="product-item">
           <img src="${img}" alt="${title}" />
           <h3>${title}</h3>
           <div class="product-prices">
-            <span class="discounted-price">$${price}</span>
+            <span class="discounted-price">${price}₼/kq</span>
+          </div>
+          <div class="weight-selector">
+            <label>Kiloqram: </label>
+            <input type="number" class="weight-input" min="0.1" step="0.1" value="1">
           </div>
           <button class="add-to-cart">Səbətə Əlavə et</button>
         </div>
       `;
     });
+    
+    attachCartEventListeners();
   }
 
-  // Başlangıçta tüm ürünleri göster
+  function attachCartEventListeners() {
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
+    addToCartButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const product = this.closest(".product-item");
+        const productName = product.querySelector("h3").textContent;
+        const basePrice = parseFloat(product.querySelector(".discounted-price").textContent.replace('₼', ''));
+        const weight = parseFloat(product.querySelector(".weight-input").value);
+        const productImage = product.querySelector("img").src;
+        
+        if (weight <= 0 || isNaN(weight)) {
+          alert("Yazdığınız kiloqram dəyərli uyğun deyil !");
+          return;
+        }
+
+        if (cart[productName]) {
+          cart[productName].weight += weight;
+          cart[productName].totalPrice = (cart[productName].weight * basePrice).toFixed(2);
+        } else {
+          cart[productName] = {
+            basePrice: basePrice,
+            weight: weight,
+            totalPrice: (basePrice * weight).toFixed(2),
+            image: productImage,
+          };
+        }
+        updateCartDisplay();
+      });
+    });
+  }
+
   displayProducts(mockData);
 
-  // Kategoriye tıklanabilirlik ekleyelim
   const categoryItems = document.querySelectorAll(".category");
-
   categoryItems.forEach(item => {
     item.addEventListener("click", function () {
       const category = this.getAttribute("data-category");
-
-      // Seçilen kategoriye ait ürünleri filtrele
       const filteredProducts = mockData.filter(product => product.category === category);
-
-      // Filtrelenmiş ürünleri göster
       displayProducts(filteredProducts);
     });
   });
@@ -54,14 +84,16 @@ document.addEventListener("DOMContentLoaded", function () {
       <span class="close-modal">&times;</span>
       <h2>Səbətiniz</h2>
       <ul class="cart-items"></ul>
-      <button class="checkout">Əldə et</button>
+      <div class="cart-total">Cəm: 0.00₼</div>
+      <button class="checkout">Ödəniş Et</button>
     </div>
   `;
   document.body.appendChild(modal);
 
   const closeModal = modal.querySelector(".close-modal");
   const cartItemsList = modal.querySelector(".cart-items");
-  const addToCartButtons = document.querySelectorAll(".add-to-cart");
+  const cartTotal = modal.querySelector(".cart-total");
+  let cart = {};
 
   let notificationBadge;
   if (notificationIcon) {
@@ -71,8 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
     notificationBadge.style.display = "none";
     notificationIcon.appendChild(notificationBadge);
   }
-
-  let cart = {};
 
   cartIcon.addEventListener("click", function () {
     modal.style.display = "block";
@@ -88,67 +118,62 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  addToCartButtons.forEach((button) => {
-    button.addEventListener("click", function () {
-      const product = this.closest(".product-item");
-      const productName = product.querySelector("h3").textContent;
-      const productPrice = product.querySelector(".discounted-price").textContent;
-      const productImage = product.querySelector("img").src;
-
-      if (cart[productName]) {
-        cart[productName].quantity++;
-      } else {
-        cart[productName] = {
-          price: productPrice,
-          image: productImage,
-          quantity: 1,
-        };
-      }
-      updateCartDisplay();
-    });
-  });
-
   function updateCartDisplay() {
     cartItemsList.innerHTML = "";
-    let totalCount = 0;
+   
+    let uniqueItemCount = Object.keys(cart).length;
+    let grandTotal = 0;
 
     Object.keys(cart).forEach((productName) => {
       const item = cart[productName];
-      totalCount += item.quantity;
-
+      grandTotal += parseFloat(item.totalPrice);
+      
       const cartItem = document.createElement("li");
       cartItem.classList.add("cart-item");
       cartItem.innerHTML = `
         <img src="${item.image}" alt="${productName}" width="50" height="50">
-        <span>${productName} - ${item.price}</span>
+        <div class="item-details">
+          <span class="item-name">${productName}</span>
+          <span class="item-price">$${item.basePrice}/kg</span>
+          <span class="item-weight">${item.weight.toFixed(1)} kg</span>
+          <span class="item-total">Cəm: ${item.totalPrice}₼</span>
+        </div>
         <div class="quantity-controls">
           <button class="decrease">-</button>
-          <span class="quantity">${item.quantity}</span>
+          <span class="quantity">${item.weight.toFixed(1)} kg</span>
           <button class="increase">+</button>
         </div>
         <button class="remove-item">X</button>
       `;
       cartItemsList.appendChild(cartItem);
+      
       cartItem.querySelector(".increase").addEventListener("click", function () {
-        cart[productName].quantity++;
+        cart[productName].weight += 0.5; 
+        cart[productName].totalPrice = (cart[productName].weight * cart[productName].basePrice).toFixed(2);
         updateCartDisplay();
       });
+      
       cartItem.querySelector(".decrease").addEventListener("click", function () {
-        cart[productName].quantity--;
-        if (cart[productName].quantity <= 0) {
+        cart[productName].weight -= 0.5; 
+        if (cart[productName].weight <= 0) {
           delete cart[productName];
+        } else {
+          cart[productName].totalPrice = (cart[productName].weight * cart[productName].basePrice).toFixed(2);
         }
         updateCartDisplay();
       });
+      
       cartItem.querySelector(".remove-item").addEventListener("click", function () {
         delete cart[productName];
         updateCartDisplay();
       });
     });
 
+    cartTotal.textContent = `Cəm: ${grandTotal.toFixed(2)}₼`;
+
     if (notificationIcon) {
-      if (totalCount > 0) {
-        notificationBadge.textContent = totalCount;
+      if (uniqueItemCount > 0) {
+        notificationBadge.textContent = uniqueItemCount;
         notificationBadge.style.display = "inline";
       } else {
         notificationBadge.style.display = "none";
