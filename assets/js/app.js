@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <h2>Səbətiniz</h2>
       <ul class="cart-items"></ul>
       <div class="cart-total">Cəm: 0.00₼</div>
-      <button class="checkout">Ödəniş Et</button>
+      <a href="../pages/payment.html" class="checkout salam">Ödəniş Et</a>
     </div>
   `;
   document.body.appendChild(modal);
@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const closeModal = modal.querySelector(".close-modal");
   const cartItemsList = modal.querySelector(".cart-items");
   const cartTotal = modal.querySelector(".cart-total");
-  let cart = {};
+  let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
   let notificationBadge;
   if (notificationIcon) {
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <img src="${item.image}" alt="${productName}" width="50" height="50">
         <div class="item-details">
           <span class="item-name">${productName}</span>
-          <span class="item-price">$${item.basePrice}/kg</span>
+          <span class="item-price">${item.basePrice}₼/kg</span>
           <span class="item-weight">${item.weight.toFixed(1)} kg</span>
           <span class="item-total">Cəm: ${item.totalPrice}₼</span>
         </div>
@@ -179,6 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
         notificationBadge.style.display = "none";
       }
     }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   updateCartDisplay();
