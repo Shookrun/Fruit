@@ -51,28 +51,7 @@
         <h3>Səbətiniz</h3>
         <ul class="cart-items"></ul>
         <div class="cart-total">Cəm: 0.00₼</div>
-      </div>
-      <div class="payment-form">
-        <h3>Kart Məlumatları</h3>
-        <div class="form-group">
-          <label for="card-number">Kart Nömrəsi</label>
-          <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="19" />
-        </div>
-        <div class="form-group">
-          <label for="card-holder">Kart Sahibinin Adı</label>
-          <input type="text" id="card-holder" placeholder="Ad Soyad" />
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="expiry-date">Son İstifadə Tarixi</label>
-            <input type="text" id="expiry-date" placeholder="MM/YY" maxlength="5" />
-          </div>
-          <div class="form-group">
-            <label for="cvv">CVV</label>
-            <input type="text" id="cvv" placeholder="123" maxlength="3" />
-          </div>
-        </div>
-        <button class="submit-payment">Ödənişi Tamamla</button>
+         <button class="submit-payment">Ödənişi Tamamla</button>
       </div>
      </div>
     </div>
@@ -94,7 +73,7 @@
 
             const cartItem = document.createElement("li");
             cartItem.classList.add("cart-item");
-            cartItem.innerHTML = `
+            cartItem.innerHTML += `
               <img src="${item.image}" alt="${productName}" width="50" height="50">
               <div class="item-details">
                 <span class="item-name">${productName}</span>
@@ -102,31 +81,12 @@
                 <span class="item-weight">${item.weight.toFixed(1)} kg</span>
                 <span class="item-total">Cəm: ${item.totalPrice}₼</span>
               </div>
-              <div class="quantity-controls">
-                <button class="decrease">-</button>
-                <span class="quantity">${item.weight.toFixed(1)} kg</span>
-                <button class="increase">+</button>
-              </div>
+             
             `;
             cartItemsList.appendChild(cartItem);
 
-            cartItem.querySelector(".increase").addEventListener("click", function () {
-              cart[productName].weight += 0.5;
-              cart[productName].totalPrice = (cart[productName].weight * cart[productName].basePrice).toFixed(2);
-              localStorage.setItem("cart", JSON.stringify(cart));
-              displayCart();
-            });
-
-            cartItem.querySelector(".decrease").addEventListener("click", function () {
-              cart[productName].weight -= 0.5;
-              if (cart[productName].weight <= 0) {
-                delete cart[productName];
-              } else {
-                cart[productName].totalPrice = (cart[productName].weight * cart[productName].basePrice).toFixed(2);
-              }
-              localStorage.setItem("cart", JSON.stringify(cart));
-              displayCart();
-            });
+         
+         
           });
 
           cartTotal.textContent = `Cəm: ${grandTotal.toFixed(2)}₼`;
